@@ -11,38 +11,45 @@ class MainApp(private val moduleService: ModuleService = JBossModuleServiceImpl(
             val sampleServices = moduleService.loadService(clazz)
             sampleServices.forEach { println(it.value) }
         } catch (e: Exception) {
+            println(e)
         }
     }
 
     companion object {
-        private const val SUB_MODULE_1_PATH = "/Users/ukohlmeyer/projects/geodemodules/sub-module1/target/submodule-1-1.0-SNAPSHOT.jar"
-        private const val SUB_MODULE_2_PATH = "/Users/ukohlmeyer/projects/geodemodules/sub-module2/target/sub-module2-1.0-SNAPSHOT.jar"
-        private const val SUB_MODULE_3_PATH = "/Users/ukohlmeyer/projects/geodemodules/sub-module3/target/sub-module3-1.0-SNAPSHOT.jar"
-        private const val SUB_MODULE_4_PATH = "/Users/ukohlmeyer/projects/geodemodules/sub-module4/target/sub-module4-1.0-SNAPSHOT.jar"
-        private const val SUB_MODULE_5_PATH = "/Users/ukohlmeyer/projects/geodemodules/sub-module5/target/sub-module5-1.0-SNAPSHOT.jar"
+//        private const val SUB_MODULE_1_PATH = "/tamara2/users/ukohlmeyer/projects/geodemodules/sub-module1/target/submodule-1-1.0-SNAPSHOT.jar"
+//        private const val SUB_MODULE_2_PATH = "/tamara2/users/ukohlmeyer/projects/geodemodules/sub-module2/target/sub-module2-1.0-SNAPSHOT.jar"
+//        private const val SUB_MODULE_3_PATH = "/tamara2/users/ukohlmeyer/projects/geodemodules/sub-module3/target/sub-module3-1.0-SNAPSHOT.jar"
+//        private const val SUB_MODULE_4_PATH = "/tamara2/users/ukohlmeyer/projects/geodemodules/sub-module4/target/sub-module4-1.0-SNAPSHOT.jar"
+//        private const val SUB_MODULE_5_PATH = "/tamara2/users/ukohlmeyer/projects/geodemodules/sub-module5/target/sub-module5-1.0-SNAPSHOT.jar"
+        private const val MANIFEST_JAR_PATH = "/tamara2/users/ukohlmeyer/projects/geodemodules/module-assembly/build/libs/geode-modules-dependencies.jar"
+
 
         @JvmStatic
         fun main(args: Array<String>) {
             val mainApp = MainApp()
 
-            mainApp.registerModuleFromJar(SUB_MODULE_1_PATH, "submodule1")
-            mainApp.registerModuleFromJar(SUB_MODULE_2_PATH, "submodule2")
-            mainApp.registerModuleFromJar(SUB_MODULE_3_PATH, "submodule3")
-            mainApp.registerModuleFromJar(SUB_MODULE_4_PATH, "submodule4")
-            mainApp.registerModuleFromJar(SUB_MODULE_5_PATH, "submodule5", "submodule4")
+            mainApp.registerModuleFromJar(MANIFEST_JAR_PATH,"manifestJarModule")
+
+//            mainApp.registerModuleFromJar(SUB_MODULE_1_PATH, "submodule1")
+//            mainApp.registerModuleFromJar(SUB_MODULE_2_PATH, "submodule2")
+//            mainApp.registerModuleFromJar(SUB_MODULE_3_PATH, "submodule3")
+//            mainApp.registerModuleFromJar(SUB_MODULE_4_PATH, "submodule4")
+//            mainApp.registerModuleFromJar(SUB_MODULE_5_PATH, "submodule5", "submodule4")
 
 
-            val subModule1 = mainApp.loadModule("submodule1")
-            val subModule2 = mainApp.loadModule("submodule2")
-            val subModule3 = mainApp.loadModule("submodule3")
-            val subModule4 = mainApp.loadModule("submodule4")
-            val subModule5 = mainApp.loadModule("submodule5")
+            val manifestModule = mainApp.loadModule("manifestJarModule")
 
-            testClassLeakage(subModule1)
-            testClassLeakage(subModule2)
-            testClassLeakage(subModule3)
-            testClassLeakage(subModule4)
-            testClassLeakage(subModule5)
+//            val subModule1 = mainApp.loadModule("submodule1")
+//            val subModule2 = mainApp.loadModule("submodule2")
+//            val subModule3 = mainApp.loadModule("submodule3")
+//            val subModule4 = mainApp.loadModule("submodule4")
+//            val subModule5 = mainApp.loadModule("submodule5")
+//
+//            testClassLeakage(subModule1)
+//            testClassLeakage(subModule2)
+//            testClassLeakage(subModule3)
+//            testClassLeakage(subModule4)
+//            testClassLeakage(subModule5)
 
             mainApp.loadImplementationFromServiceLoader(SampleService::class.java)
 
