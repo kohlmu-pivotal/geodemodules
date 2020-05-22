@@ -11,6 +11,7 @@ class MainApp(private val moduleService: ModuleService = JBossModuleServiceImpl(
             val sampleServices = moduleService.loadService(clazz)
             sampleServices.forEach { println(it.value) }
         } catch (e: Exception) {
+            e.printStackTrace()
             println(e)
         }
     }

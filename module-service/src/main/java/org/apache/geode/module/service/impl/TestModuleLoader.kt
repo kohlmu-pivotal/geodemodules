@@ -19,7 +19,6 @@ class TestModuleLoader(private val delegateModuleFinder: DelegateModuleFinder = 
                     ?.value
                     ?: run { delegateModuleFinder.findModule(name, this) }
                             ?.also { moduleSpec ->
-                                println(moduleSpec)
                                 this.moduleSpecs[name] = moduleSpec
                             }
 

@@ -7,6 +7,6 @@ import org.apache.geode.service.SampleService;
 public class SampleServiceImpl implements SampleService {
 
 	public String getValue() {
-		return StringUtils.capitalize("sPrInG utiLS".toLowerCase());
+		return StringUtils.capitalize("org.springframework.util.StringUtils ".toLowerCase());
 	}
 }

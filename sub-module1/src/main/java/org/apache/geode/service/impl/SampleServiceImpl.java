@@ -7,6 +7,6 @@ import org.apache.geode.service.SampleService;
 public class SampleServiceImpl implements SampleService {
 
   public String getValue() {
-    return Strings.repeat("99 ", 7);
+    return Strings.nullToEmpty("com.google.common.base.Strings");
   }
 }

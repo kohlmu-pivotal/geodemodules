@@ -174,6 +174,7 @@ public final class JarModuleFinder implements ModuleFinder {
 				//}
 				builder.addDependency(new ModuleDependencySpecBuilder()
 					.setName(moduleName)
+					.setImportServices(true)
 					.setExport(export)
 					.setOptional(optional)
 					.build());
